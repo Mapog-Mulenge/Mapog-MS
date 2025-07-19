@@ -1,17 +1,20 @@
-# Use Node.js LTS image
-FROM node:18
+# Dockerfile
+# Use official Node.js image
+FROM node:18-alpine
 
-# Create app directory
+# Set working directory
 WORKDIR /usr/src/app
 
-# Install dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install app dependencies
 RUN npm install --production
 
-# Copy app source code
+# Copy the rest of the app
 COPY . .
 
-# Expose port
+# Expose backend port
 EXPOSE 8080
 
 # Start the app
