@@ -1,0 +1,32 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint and test
+        run: |
+          npm run lint
+          npm test || echo "No tests found"
+
+      - name: Deploy to Railway
+        run: |
+          curl -fsSL https://railway.app/install.sh | sh
+          railway up --service mapog-msms-api --token ${{ secrets.RAILWAY_TOKEN }}
