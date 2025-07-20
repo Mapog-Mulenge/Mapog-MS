@@ -1,21 +1,20 @@
-# Dockerfile
-# Use official Node.js image
-FROM node:18-alpine
+# Use Node.js 22 as base image
+FROM node:22-alpine
 
 # Set working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install app dependencies
+# Install dependencies
 RUN npm install --production
 
-# Copy the rest of the app
+# Copy the rest of the application
 COPY . .
 
-# Expose backend port
+# Expose the app port
 EXPOSE 8080
 
-# Start the app
+# Start the server
 CMD ["node", "server.js"]
