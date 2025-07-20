@@ -1,20 +1,21 @@
-# Use Node.js 22 as base image
+# Use Node 22 Alpine
 FROM node:22-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package files and install dependencies
 COPY package*.json ./
+RUN npm ci --only=production
 
-# Install dependencies
-RUN npm install --production
-
-# Copy the rest of the application
+# Copy rest of the app
 COPY . .
 
-# Expose the app port
+# Expose port
 EXPOSE 8080
 
-# Start the server
+# Set environment
+ENV NODE_ENV=production
+
+# Start the app
 CMD ["node", "server.js"]
