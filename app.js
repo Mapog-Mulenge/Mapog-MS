@@ -10,6 +10,8 @@ dotenv.config();
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const schoolRoutes = require("./routes/schoolRoutes");
+const analyticsRoutes = require("./routes/analyticsRoutes");
+const pageRoutes = require("./routes/pageRoutes");
 
 const app = express();
 
@@ -30,6 +32,8 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/schools", schoolRoutes);
+app.use("/api/analytics", analyticsRoutes);
+app.use("/api/pages", pageRoutes);
 
 // Global Error Handler
 app.use(require("./middlewares/errorHandler"));
