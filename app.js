@@ -23,15 +23,6 @@ app.use(morgan("dev"));
 // Connect Database
 connectDB();
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ MongoDB Connected"))
-.catch((err) => {
-  console.error("❌ MongoDB Connection Error:", err.message);
-});
-
 // API Health Check
 app.get("/health", (req, res) => {
   res.status(200).json({ message: "Mapog API is healthy ✅" });
