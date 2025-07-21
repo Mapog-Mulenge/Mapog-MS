@@ -1,21 +1,7 @@
-# Use Node 22 Alpine
-FROM node:22-alpine
-
-# Set working directory
-WORKDIR /app
-
-# Copy package files and install dependencies
+FROM node:18-alpine
+WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm ci --only=production
-
-# Copy rest of the app
+RUN npm install --production
 COPY . .
-
-# Expose port
-EXPOSE 8080
-
-# Set environment
-ENV NODE_ENV=production
-
-# Start the app
+EXPOSE 5000
 CMD ["node", "server.js"]
