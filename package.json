@@ -6,11 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
-
-"scripts": {
-  "preinstall": "npm cache clean --force",
-  "start": "node index.js"
-}
+    "preinstall": "npm cache clean --force",
+    "start": "node index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
