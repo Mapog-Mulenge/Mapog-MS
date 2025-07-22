@@ -11,7 +11,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --npm --include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
     npm --foreground-scripts] [--ignore-scripts] [--no-audit]
-npm error [--no-bin-links] [--no-fund] [--dry-run]
+    npm --no-bin-links] [--no-fund] [--dry-run]
 
 # Copy application code
 COPY . .
