@@ -9,7 +9,9 @@ WORKDIR /app
 
 # Copy package files and install dependencies
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --npm --include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+    npm --foreground-scripts] [--ignore-scripts] [--no-audit]
+npm error [--no-bin-links] [--no-fund] [--dry-run]
 
 # Copy application code
 COPY . .
