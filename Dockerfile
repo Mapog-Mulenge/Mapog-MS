@@ -12,8 +12,7 @@ ENV NODE_ENV=production
 COPY package*.json ./
 
 # Clean npm cache and force fresh package download
-RUN npm install -g npm@11.4.2 && \
-    npm cache clean --force && \
+RUN npm install -g npm@11.4.2 
     npm ci
 
 # Copy application code
