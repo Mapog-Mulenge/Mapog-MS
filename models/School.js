@@ -1,10 +1,20 @@
 const mongoose = require("mongoose");
 
-const schoolSchema = new mongoose.Schema({
-  name: String,
-  address: String,
-  contactEmail: String,
-  createdAt: { type: Date, default: Date.now }
-});
+const SchoolSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  location: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    enum: ["Primary", "Secondary", "Tertiary"],
+    default: "Primary",
+  },
+}, { timestamps: true });
 
-module.exports = mongoose.model("School", schoolSchema);
+module.exports = mongoose.model("School", SchoolSchema);
