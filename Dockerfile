@@ -1,29 +1,20 @@
-# Use minimal base image
+# Use official Node.js LTS image
 FROM node:22-alpine
 
-# Create non-root user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-
 # Set working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy package files and install dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-RUN npm install -g npm@11.4.5 --include <prod|dev|optional|peer>]]
-    npm --foreground-scripts] [--no-audit]
+# Install dependencies
+RUN npm ci --only=production
 
-# Copy application code
+# Copy source files
 COPY . .
 
-# Set ownership and permissions
-RUN chown -R appuser:appgroup /app && chmod -R 750 /app
-
-# Switch to non-root user
-USER appuser
-
-# Expose only necessary port
+# Expose backend port (adjust if needed)
 EXPOSE 8080
 
-# Start server
+# Start the server
 CMD ["node", "server.js"]
