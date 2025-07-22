@@ -10,8 +10,8 @@ WORKDIR /app
 # Copy package files and install dependencies
 COPY package*.json ./
 
-RUN npm ci 
-    npm --include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+RUN npm install -g npm@11.4.5
+    npm --include <prod|dev|optional|peer>]]
     npm --foreground-scripts] [--ignore-scripts] [--no-audit]
 
 # Copy application code
