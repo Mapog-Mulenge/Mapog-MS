@@ -1,10 +1,10 @@
-const app = require('./app');
-const PORT = process.env.PORT || 5000;
+const app = require("./app");
+const dotenv = require("dotenv");
 
-app.get('/health', (req, res) => {
-  res.status(200).send('Backend is healthy ✅');
-});
+dotenv.config();
+
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT} 🚀`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
