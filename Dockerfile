@@ -14,7 +14,7 @@ COPY package*.json ./
 # Clean npm cache and force fresh package download
 RUN npm install -g npm@11.4.2 && \
     npm cache clean --force && \
-    npm ci --prefer-offline --no-audit --legacy-peer-deps
+    npm ci
 
 # Copy application code
 COPY . .
