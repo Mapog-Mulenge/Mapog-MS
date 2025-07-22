@@ -4,14 +4,13 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 
-// Load environment variables
+// Load env vars
 dotenv.config();
 
+// Routes
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const schoolRoutes = require("./routes/schoolRoutes");
-const analyticsRoutes = require("./routes/analyticsRoutes");
-const pageRoutes = require("./routes/pageRoutes");
 
 const app = express();
 
@@ -20,22 +19,19 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-// Connect Database
+// Connect DB
 connectDB();
 
-// API Health Check
+// Health check
 app.get("/health", (req, res) => {
-  res.status(200).json({ message: "Mapog API is healthy ✅" });
+  res.status(200).json({ message: "✅ Mapog API is healthy" });
 });
 
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/schools", schoolRoutes);
-app.use("/api/analytics", analyticsRoutes);
-app.use("/api/pages", pageRoutes);
 
-// Global Error Handler
 app.use(require("./middlewares/errorHandler"));
 
 module.exports = app;
