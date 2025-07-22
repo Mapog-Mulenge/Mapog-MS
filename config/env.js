@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+t dotenv = require("dotenv");
 
 dotenv.config();
 
