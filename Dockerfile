@@ -1,29 +1,26 @@
-# Use minimal base image
+# Use a slim Node base image
 FROM node:22-alpine
-
-# Create non-root user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 # Set working directory
 WORKDIR /app
 
+# Force npm to clear cache and disable integrity check
+ENV NPM_CONFIG_CACHE=/tmp/.npm-cache
+ENV NODE_ENV=production
+
 # Copy package files and install dependencies
 COPY package*.json ./
-RUN npm cache clean --force && npm ci --only=production
-RUN npm config set cache /tmp/empty-npm-cache --global
-RUN npm ci --only=production
+
+# Clean npm cache and force fresh package download
+RUN npm install -g npm@11.4.2 && \
+    npm cache clean --force && \
+    npm ci --prefer-offline --no-audit --legacy-peer-deps
 
 # Copy application code
 COPY . .
 
-# Set ownership and permissions
-RUN chown -R appuser:appgroup /app && chmod -R 750 /app
-
-# Switch to non-root user
-USER appuser
-
-# Expose only necessary port
+# Expose app port
 EXPOSE 8080
 
-# Start server
+# Start the app
 CMD ["node", "server.js"]
