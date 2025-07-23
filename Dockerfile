@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install -g npm@11.4.2
-RUN npm install-clean
+RUN npm install-clean --only=production
 
 # Copy source files
 COPY . .
