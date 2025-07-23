@@ -12,4 +12,6 @@ EXPOSE 8080
 RUN addgroup -g 1001 -S appgroup && adduser -u 1001 -S appuser -G appgroup
 USER appuser
 
+ENV CHOKIDAR_USEPOLLING=true
+
 CMD ["node", "server.js"]
