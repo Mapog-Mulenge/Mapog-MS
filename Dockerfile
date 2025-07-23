@@ -3,8 +3,8 @@ FROM node:22-alpine
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-
-RUN npm install -g npm@11.4.2: clean-install --omit=dev
+RUN npm install -g npm@11.4.2
+RUN clean-install --production
 
 COPY . .
 
