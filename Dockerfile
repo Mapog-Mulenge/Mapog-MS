@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install -g npm@11.4.2
-RUN npm install --omit=dev
+RUN npm install
 
 # Copy source files
 COPY . .
