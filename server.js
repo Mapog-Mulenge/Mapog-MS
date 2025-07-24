@@ -13,7 +13,7 @@ const handle = app.getRequestHandler();
 app.process().then(() => {
   const server = express ()
 
-server all('*', (req, res) => {
+server.all('*', (req, res) => {
   return handle(req, res);           
 
 app.listen(PORT, () => {
