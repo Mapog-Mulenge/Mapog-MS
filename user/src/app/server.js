@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const config = require('./config');
 const dotenv = require("dotenv");
 
 dotenv.config();
