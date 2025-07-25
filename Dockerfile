@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN npm install -g npm@11.4.2
+RUN npm install <missing-package>
 
 COPY . .
 
