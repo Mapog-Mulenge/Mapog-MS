@@ -1,24 +1,8 @@
-const express = require('express');
-const next = require('next');
-const config = require('./config');
-const dotenv = require("dotenv");
+// backend/server.js
+const app = require('./app');
 
-dotenv.config();
+const PORT = process.env.PORT || 5000;
 
-const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({ dev });
-const handle = nextApp.getRequestHandler();
-
-const PORT = process.env.PORT || 8080;
-
-nextApp.prepare().then(() => {
-  const server = express();
-
-  server.all('*', (req, res) => {
-    return handle(req, res);
-  });
-
-  server.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-  });
+app.listen(PORT, () => {
+  console.log(`Mapog backend running on port ${PORT}`);
 });
