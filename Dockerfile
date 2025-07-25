@@ -14,4 +14,4 @@ USER appuser
 
 ENV CHOKIDAR_USEPOLLING=true
 
-CMD ["node", "server.js"]
+CMD ["node", "app.js"]
