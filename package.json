@@ -2,7 +2,7 @@
   "name": "mapog-msms-api",
   "version": "1.0.0",
   "description": "Mapog Management API",
-  "main": "server.js",
+  "main": "user/src/app/server.js",
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "start": "node user/src/app/server.js",
