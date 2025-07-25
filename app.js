@@ -44,7 +44,7 @@ app.use("/api/pages", pageRoutes);
 
 //test route
 app.get('/ping', (req, res) =>
-  res.send('pong');
+  res.send('pong'));
 });
 
 // Global Error Handler
