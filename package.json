@@ -2,10 +2,10 @@
   "name": "mapog-backend",
   "version": "1.0.0",
   "description": "Mapog backend server",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "lint": "eslint ."
   },
   "dependencies": {
