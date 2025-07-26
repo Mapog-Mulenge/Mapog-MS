@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:8.0
+    container_name: mapog-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mapog-network
+
+  backend:
+    build: ./apps/backend
+    container_name: mapog-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://root:example@mongo:27017/mapog-msms?authSource=admin
+      - JWT_SECRET=supersecretkey
+      - PORT=5000
+    networks:
+      - mapog-network
+
+  frontend:
+    build: ./apps/frontend
+    container_name: mapog-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - mapog-network
+
+volumes:
+  mongo_data:
+
+networks:
+  mapog-network:
+    driver: bridge
