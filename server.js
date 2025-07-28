@@ -1,26 +1,19 @@
-const app = require("./app");
+require("dotenv").config();
 const express = require('express');
-const next = require('next');
-const dotenv = require("dotenv");
 
-dotenv.config();
+const app = express();
 
-const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({ dev });
-const handle = nextApp.getRequestHandler();
+app.use(express.json());
 
-nextApp.prepare().then(() => {
-  const server = express();
-
-app.get('/health', (req, res) =>
+app.get('/health', (req, res) => {
   res.status(200).send('Backend OK'));
+});
 
-  server.all('*', (req, res) => {
-    return handle(req, res);
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'Hello from Mpog backend'});
   });
 
  const PORT = process.env.PORT || 8080;
   app.listen(PORT,'0.0.0.0/0', () => {
     console.log(`🚀 Server running on port${PORT}`);
-     });
 });
