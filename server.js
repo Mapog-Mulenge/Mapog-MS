@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/health', (req, res) => {
-  res.status(200).send('Backend OK'));
+  res.status(200).send('Backend OK');
 });
 
 app.get('/api/data', (req, res) => {
