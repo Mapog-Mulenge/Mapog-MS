@@ -19,9 +19,6 @@ app.get('/', (req, res) => {
   res.json({ message: 'Mapog backend is running 🚀' });
 });
 
-// API example
-app.use('/api/v1/timetable', require('./routes/timetable'));
-
 // Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
