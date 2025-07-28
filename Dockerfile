@@ -7,7 +7,6 @@ WORKDIR /usr/src/app
 # Install dependencies
 COPY package*.json ./
 RUN npm install -g npm@11.5.1
-RUN npm install --omit=dev
 
 # Copy backend code
 COPY . .
