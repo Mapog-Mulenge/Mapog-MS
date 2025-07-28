@@ -2,7 +2,8 @@
 FROM node:22-alpine
 
 # Set work directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/app.js
+WORKDIR /usr/src/app/server.js
 
 # Install dependencies
 COPY package*.json ./
