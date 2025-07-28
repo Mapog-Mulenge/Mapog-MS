@@ -9,20 +9,18 @@ const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 
-const PORT = process.env.PORT || 8080;
-
 nextApp.prepare().then(() => {
   const server = express();
+
+app.get('/health', (req, res) =>
+  res.status(200).send('Backend OK'));
 
   server.all('*', (req, res) => {
     return handle(req, res);
   });
 
-  app.listen(PORT, () => {
+ const PORT = process.env.PORT || 8080;
+  app.listen(PORT,'0.0.0.0/0', () => {
     console.log(`🚀 Server running on port${PORT}`);
      });
-  
-  server.listen(PORT, () => {
-    console.log(`🚀 Server running on port${PORT}`);
-  });
 });
