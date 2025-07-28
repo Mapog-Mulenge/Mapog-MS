@@ -1,3 +1,4 @@
+const app = require("./app");
 const express = require('express');
 const next = require('next');
 const dotenv = require("dotenv");
@@ -17,6 +18,10 @@ nextApp.prepare().then(() => {
     return handle(req, res);
   });
 
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+     });
+  
   server.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
   });
