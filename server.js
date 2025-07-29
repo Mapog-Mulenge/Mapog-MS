@@ -18,29 +18,50 @@ app.get("/health", (req, res) => {
 ================================= */
 
 // ✅ GET user profile (e.g., /api/users/123)
-app.get("/api/users/:id", (req, res) => {
-  const userId = req.params.id;
-  res.json({
-    message: "User profile fetched successfully",
-    user: {
-      id: userId,
-      name: "Peter Mulenge",
-      email: "contact@mapog.xyz"
-    }
-  });
-});
+app.get("/api/users/:id?", (req, res) => {
+  const userId = req.params.id || req.querry.id;
 
-// ✅ POST user login
-app.post("/api/users/login", (req, res) => {
-  const { email, password } = req.body;
-  if (email && password) {
+  if (userId) {
     res.json({
-      message: "Login successful",
-      user: { email, token: "sample-jwt-token" }
+      message:"User profile fetched successfully",
+      user: {
+        id: userId,
+        name: "Peter Mulenge",
+        email: "contact@mapog.xyz"
+      }
     });
   } else {
-    res.status(400).json({ error: "Email and password required" });
+    res.json({
+      message: "All users fetched successfully",
+      users: [
+        { id: 1, name: "Peter Mulenge", email: "contact@mapog.xyz" },
+        { id: 2, name: "Jane Doe", email: "jane@example.com" }
+        ]
+    });
   }
+});
+
+// ✅ POST user creation (registration)
+app.post("/api/users", (req, res) => {
+  const { name, email, password } = req.body;
+  
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      error: "Name, email, and password are required"
+    });
+  }
+
+// Normally: Save to DB here
+const newUser = {
+  id: Date.now(),
+  name,
+  email
+};
+
+res.status(201).json({
+  message: "User created successfully",
+  user: newUser
+});
 });
 
 /* ================================
