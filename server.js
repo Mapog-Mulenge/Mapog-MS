@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(cors({ origin: "*" })); // Restrict to frontend domain in production
@@ -78,7 +78,6 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-const PORT = process.env.PORT || 8080;
-  app.listen(PORT, () => {
-    console.log(`Mapog Backend running on port ${PORT}`);
+app.listen(PORT, () => {
+ console.log(`Mapog Backend running on port ${PORT}`);
 });
